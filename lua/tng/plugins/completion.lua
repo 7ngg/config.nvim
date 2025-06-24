@@ -8,6 +8,7 @@ return {
   version = "*",
 
   ---@module 'blink.cmp'
+  ---@diagnostic disable-next-line: undefined-doc-name
   ---@type blink.cmp.Config
 
   opts = {
@@ -24,7 +25,12 @@ return {
       nerd_font_variant = "mono",
     },
 
-    signature = { enabled = true },
+    signature = {
+      enabled = true,
+      window = {
+        border = "rounded"
+      }
+    },
 
     completion = {
       documentation = {
@@ -74,8 +80,13 @@ return {
 
     fuzzy = { implementation = "prefer_rust_with_warning" },
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+      default = { 'lazydev', 'easy-dotnet', 'lsp', 'path', 'snippets', 'buffer' },
       providers = {
+        lazydev = {
+          name = "LazyDev",
+          module = "lazydev.integrations.blink",
+          score_offset = 100,
+        },
         ["easy-dotnet"] = {
           name = "easy-dotnet",
           enabled = true,
