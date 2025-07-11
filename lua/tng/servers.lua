@@ -12,4 +12,5 @@ return {
   sqls = {},
   rust_analyzer = {},
   lua_ls = {},
+  roslyn = {},
 }

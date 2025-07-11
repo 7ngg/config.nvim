@@ -42,13 +42,13 @@ return {
     })
 
     for name, config in pairs(servers) do
-      vim.lsp.enable(name)
       vim.lsp.config(name, config)
     end
 
     vim.diagnostic.config({
       virtual_text = false,
       update_in_insert = true,
+      underline = true,
       float = {
         style = 'minimal',
         border = "rounded",
@@ -66,7 +66,7 @@ return {
         vim.keymap.set("n", "gd", builtin.lsp_definitions, opts)
         vim.keymap.set("n", "gr", builtin.lsp_references, opts)
 
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, opts)
         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
         vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
         vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
