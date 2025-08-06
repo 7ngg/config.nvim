@@ -21,14 +21,6 @@ return {
     "nanotee/sqls.nvim",
   },
   config = function()
-    local servers = require("tng.servers")
-
-    local ensure_installed = {
-      "lua_ls",
-      "clangd",
-      "gopls",
-    }
-
     require('mason').setup({
       registries = {
         "github:mason-org/mason-registry",
@@ -36,11 +28,9 @@ return {
       },
     })
 
-    ---@diagnostic disable-next-line: missing-fields
-    require("mason-lspconfig").setup({
-      ensure_installed = ensure_installed,
-    })
+    require("mason-lspconfig").setup()
 
+    local servers = require("tng.servers")
     for name, config in pairs(servers) do
       vim.lsp.config(name, config)
     end
@@ -48,7 +38,6 @@ return {
     vim.diagnostic.config({
       virtual_text = false,
       update_in_insert = true,
-      underline = true,
       float = {
         style = 'minimal',
         border = "rounded",
@@ -66,11 +55,11 @@ return {
         vim.keymap.set("n", "gd", builtin.lsp_definitions, opts)
         vim.keymap.set("n", "gr", builtin.lsp_references, opts)
 
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, opts)
-        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-        vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-        vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-        vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ buffer = args.buf, border = "rounded" }) end, opts)
+        vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+        vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
+        vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
+        vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
       end
     })
   end

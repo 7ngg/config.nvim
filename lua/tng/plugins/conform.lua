@@ -11,14 +11,8 @@ return {
 				typescriptreact = { "prettierd" },
 				javascript = { "prettierd" },
 				javascriptreact = { "prettierd" },
-				cs = { "csharpier", lsp_format = "never" },
+				cs = { "csharpier" },
 				go = { "gofmt" },
-			},
-			formatters = {
-				csharpier = {
-					command = vim.fn.stdpath("data") .. "/mason/bin/csharpier",
-					args = { "format" },
-				},
 			},
 		})
 
