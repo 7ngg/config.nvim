@@ -8,10 +8,8 @@ return {
         accept = "<C-y>"
       },
       suggestion = {
-        auto_trigger = false
+        auto_trigger = true
       },
     })
-
-    vim.keymap.set("n", "<leader>cd", function() vim.cmd("Copilot disable") end)
   end
 }

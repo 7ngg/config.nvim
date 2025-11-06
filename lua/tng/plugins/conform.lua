@@ -11,8 +11,9 @@ return {
 				typescriptreact = { "prettierd" },
 				javascript = { "prettierd" },
 				javascriptreact = { "prettierd" },
-				cs = { "csharpier" },
 				go = { "gofmt" },
+                cs = { "csharpier" },
+                csproj = { "csharpier" },
 			},
 		})
 
