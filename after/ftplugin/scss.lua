@@ -6,9 +6,7 @@ function Compile()
 
   local ok = os.execute(command)
 
-  if ok == 0 then
-    print(string.format("Compiled into %s", new_filename))
-  else
+  if ok ~= 0 then
     print(string.format("Error compiling %s", filename))
   end
 end

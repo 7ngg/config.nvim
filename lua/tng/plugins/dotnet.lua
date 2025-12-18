@@ -10,6 +10,10 @@ return {
       dotnet.create_new_item(path)
     end)
 
-    dotnet.setup()
+    dotnet.setup({
+      debugger = {
+        bin_path = "/home/tng/.local/share/nvim/mason/bin/netcoredbg"
+      }
+    })
   end
 }

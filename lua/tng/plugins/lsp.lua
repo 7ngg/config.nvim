@@ -1,5 +1,6 @@
 return {
-  "neovim/nvim-lspconfig",
+  "mason-org/mason-lspconfig.nvim",
+  opts = {},
   dependencies = {
     {
       "folke/lazydev.nvim",
@@ -12,55 +13,8 @@ return {
         },
       },
     },
-    {
-      "j-hui/fidget.nvim",
-      opts = {},
-    },
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "nanotee/sqls.nvim",
+    { "j-hui/fidget.nvim", opts = {} },
+    { "mason-org/mason.nvim", opts = {} },
+    "neovim/nvim-lspconfig",
   },
-  config = function()
-    require('mason').setup({
-      registries = {
-        "github:mason-org/mason-registry",
-        "github:Crashdummyy/mason-registry",
-      },
-    })
-
-    require("mason-lspconfig").setup()
-
-    local servers = require("tng.servers")
-    for name, config in pairs(servers) do
-      vim.lsp.config(name, config)
-    end
-
-    vim.diagnostic.config({
-      virtual_text = false,
-      update_in_insert = true,
-      float = {
-        style = 'minimal',
-        border = "rounded",
-        source = true,
-        header = '',
-        prefix = '',
-      },
-    })
-
-    vim.api.nvim_create_autocmd("LspAttach", {
-      callback = function(args)
-        local opts = { buffer = args.buf }
-        local builtin = require("telescope.builtin")
-
-        vim.keymap.set("n", "gd", builtin.lsp_definitions, opts)
-        vim.keymap.set("n", "gr", builtin.lsp_references, opts)
-
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ buffer = args.buf, border = "rounded" }) end, opts)
-        vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-        vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
-        vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-        vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
-      end
-    })
-  end
 }
