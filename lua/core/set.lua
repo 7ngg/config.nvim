@@ -1,7 +1,5 @@
 local opt = vim.opt
 
-opt.termguicolors = true
-
 opt.encoding = "utf-8"
 
 opt.swapfile = false
