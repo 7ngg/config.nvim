@@ -19,6 +19,16 @@ return {
   {
     "rose-pine/neovim",
     name = "rose-pine",
+    config = function()
+      require("rose-pine").setup({
+        styles = {
+          italic = false,
+          transparency = true
+        }
+      })
+
+      ColorMyPencils("rose-pine")
+    end
   },
   {
     "folke/tokyonight.nvim",
@@ -34,7 +44,7 @@ return {
           floats = "transparent"
         }
       })
-      ColorMyPencils("tokyonight-night")
+      -- ColorMyPencils("tokyonight-moon")
     end
-  }
+  },
 }

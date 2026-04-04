@@ -2,10 +2,12 @@ return {
   'nvim-lualine/lualine.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
-    local theme = require('lualine.themes.ayu_dark')
+    local job_indicator = { require("easy-dotnet.ui-modules.jobs").lualine }
     require('lualine').setup({
+      sections = {
+        lualine_a = { "mode" },
+      },
       options = {
-        theme = theme,
         component_separators = { left = '|', right = '|' },
         section_separators = { left = '', right = '' },
       },

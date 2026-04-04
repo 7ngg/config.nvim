@@ -34,11 +34,6 @@ vim.diagnostic.config({
   },
 })
 
-vim.treesitter.install = {
-  auto_install = true,
-  prefer_git = true,  -- скачивать парсеры из GitHub проекта Neovim
-}
-
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local opts = { buffer = args.buf }

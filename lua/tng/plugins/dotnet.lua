@@ -6,13 +6,12 @@ return {
 
     vim.keymap.set("n", "<leader>dn", function()
       local path = vim.fn.expand("%")
-      print(path)
       dotnet.create_new_item(path)
     end)
 
     dotnet.setup({
-      debugger = {
-        bin_path = "/home/tng/.local/share/nvim/mason/bin/netcoredbg"
+      auto_boostrap_namespace = {
+        type = "file_scoped",
       }
     })
   end
