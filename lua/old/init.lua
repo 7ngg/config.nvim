@@ -14,23 +14,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.cmd.filetype("on")
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank()
-  end
-})
-
+vim.o.winborder = "rounded"
 vim.diagnostic.config({
   virtual_text = false,
   update_in_insert = true,
   float = {
-    style = 'minimal',
     border = "rounded",
-    source = true,
-    header = '',
-    prefix = '',
   },
 })
 
@@ -61,8 +50,10 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    vim.highlight.on_yank()
+  end
+})
 
 require("lazy").setup("old.plugins")
