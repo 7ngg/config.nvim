@@ -9,10 +9,17 @@ return {
       dotnet.create_new_item(path)
     end)
 
+    vim.keymap.set("n", "<leader>ds", function() dotnet.secrets() end, {})
+
     dotnet.setup({
+      picker = "telescope",
       auto_boostrap_namespace = {
         type = "file_scoped",
-      }
+      },
+      diagnostics = {
+        default_severity = "error", -- "error" or "warning" (default: "error")
+        setqflist = false,          -- Populate quickfix list automatically (default: false)
+      },
     })
   end
 }

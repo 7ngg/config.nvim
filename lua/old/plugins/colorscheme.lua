@@ -20,6 +20,6 @@ return {
       }
     })
 
-    ColorMyPencils()
+    vim.cmd.colorscheme("rose-pine-moon")
   end
 }
