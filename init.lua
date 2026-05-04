@@ -1,4 +1,4 @@
-local cfg = os.getenv("CONFIG") or "old"
+local cfg = os.getenv("CONFIG") or "custom"
 
 require(cfg)
 
