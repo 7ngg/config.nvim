@@ -21,5 +21,9 @@ return {
     })
 
     vim.cmd.colorscheme("rose-pine-moon")
+
+    vim.api.nvim_set_hl(0, "BlinkCmpDoc", { bg = "none" })
+    vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = "none" })
+    vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { bg = "none" })
   end
 }
