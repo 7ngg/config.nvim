@@ -26,8 +26,8 @@ opt.signcolumn = "yes"
 opt.showmode = false
 
 opt.pumheight = 10
-opt.pumblend = 0
-opt.winblend = 0
+opt.pumblend = 10
+opt.winblend = 10
 
 opt.updatetime = 50
 opt.autoread = true

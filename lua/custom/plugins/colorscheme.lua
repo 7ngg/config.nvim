@@ -1,29 +1,46 @@
 function ColorMyPencils(color)
-  color = color or "rose-pine-moon"
+  color = color or "tokyonight-night"
   vim.cmd.colorscheme(color)
-  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
-  vim.api.nvim_set_hl(0, "BlinkCmpDoc", { bg = "none" })
-  vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = "none" })
-  vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { bg = "none" })
+  local transparent_groups = {
+    "Normal", "NormalFloat", "FloatBorder", "Pmenu", "SignColumn", "EndOfBuffer",
+    "BlinkCmpDoc", "BlinkCmpDocBorder", "BlinkCmpDocSeparator",
+  }
+  for _, group in ipairs(transparent_groups) do
+    vim.api.nvim_set_hl(0, group, { bg = "none" })
+  end
 end
 
 return {
-  "rose-pine/neovim",
-  name = "rose-pine",
-  config = function()
-    require("rose-pine").setup({
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      style = "night",
+      transparent = true,
       styles = {
-        italic = false,
-        transparency = true
-      }
-    })
-
-    vim.cmd.colorscheme("rose-pine-moon")
-
-    vim.api.nvim_set_hl(0, "BlinkCmpDoc", { bg = "none" })
-    vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = "none" })
-    vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { bg = "none" })
-  end
+        comments = { italic = false },
+        keywords = { italic = false },
+      },
+    },
+    config = function(_, opts)
+      require("tokyonight").setup(opts)
+      ColorMyPencils("tokyonight-night")
+    end,
+  },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    lazy = true,
+    priority = 1000,
+    config = function()
+      require("rose-pine").setup({
+        styles = {
+          italic = false,
+          transparency = true,
+        },
+      })
+    end,
+  },
 }
